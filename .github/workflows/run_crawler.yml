@@ -25,6 +25,9 @@ jobs:
         pip install requests pandas
 
     - name: Run 591 Monitor Script
+    env:
+        LINE_ACCESS_TOKEN: ${{ secrets.LINE_ACCESS_TOKEN }}
+        USER_ID: ${{ secrets.USER_ID }}
       run: python monitor.py
 
     - name: Update seen_house_ids.txt
