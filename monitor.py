@@ -14,7 +14,7 @@ SEEN_FILE = 'seen_house_ids.txt'
 PARAMS = {
     'page': 1,               # 監控最新上架（第 1 頁）
     'region': '1',           # 台北市
-    'section': '12',         # 中山區
+    'section': '3',         # 中山區
     'rentprice': '10000_20000',
     'timestamp': str(int(time.time() * 1000))
 }
