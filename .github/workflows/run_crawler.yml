@@ -2,7 +2,7 @@ name: 591 House Rent Monitor
 
 on:
   schedule:
-    # 每 15 分鐘自動執行一次 (UTC 時間)
+    # 每 15 分鐘要自動執行一次 (UTC 時間)
     - cron: '*/15 * * * *'
   workflow_dispatch: # 允許手動點擊執行
 
