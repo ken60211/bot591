@@ -1,0 +1,36 @@
+name: 591 House Rent Monitor
+
+on:
+  schedule:
+    # 每 15 分鐘自動執行一次 (UTC 時間)
+    - cron: '*/15 * * * *'
+  workflow_dispatch: # 允許在 Actions 頁面手動點擊執行
+
+jobs:
+  run-crawler:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests pandas
+
+    - name: Run 591 Monitor Script
+      run: python monitor.py
+
+    - name: Update seen_house_ids.txt
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add seen_house_ids.txt
+        git commit -m "Auto-update seen house IDs [skip ci]" || exit 0
+        git push
