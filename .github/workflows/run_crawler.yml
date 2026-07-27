@@ -4,7 +4,7 @@ on:
   schedule:
     # 每 15 分鐘自動執行一次 (UTC 時間)
     - cron: '*/15 * * * *'
-  workflow_dispatch: # 允許在 Actions 頁面手動點擊執行
+  workflow_dispatch: # 允許手動點擊執行
 
 jobs:
   run-crawler:
@@ -25,7 +25,7 @@ jobs:
         pip install requests pandas
 
     - name: Run 591 Monitor Script
-    env:
+      env:
         LINE_ACCESS_TOKEN: ${{ secrets.LINE_ACCESS_TOKEN }}
         USER_ID: ${{ secrets.USER_ID }}
       run: python monitor.py
